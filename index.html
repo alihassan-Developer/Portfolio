@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<!-- ✏️ EDIT: Apna naam -->
+<title>Ali Hassan Bhatti — Information Technology</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#060B18;
+  --bg2:#0C1426;
+  --bg3:#111827;
+  --card:#0F1A2E;
+  --cyan:#00D4FF;
+  --violet:#7C3AED;
+  --cyan-dim:rgba(0,212,255,.12);
+  --violet-dim:rgba(124,58,237,.12);
+  --white:#EEF4FF;
+  --muted:#6B7A99;
+  --border:rgba(0,212,255,.12);
+  --border2:rgba(124,58,237,.15);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;line-height:1.6}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--violet);border-radius:4px}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 6%;
+  background:rgba(6,11,24,.8);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.logo{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.1rem;font-weight:700;
+  background:linear-gradient(90deg,var(--cyan),var(--violet));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  letter-spacing:.5px;
+}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{
+  color:var(--muted);text-decoration:none;
+  font-size:.85rem;font-weight:500;
+  transition:color .2s;font-family:'Space Grotesk',sans-serif;
+}
+.nav-links a:hover{color:var(--cyan)}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+.ham span{width:22px;height:2px;background:var(--white);border-radius:2px;transition:all .3s}
+
+/* ─── HERO ─── */
+#home{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:100px 6% 60px;position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 50% 60% at 20% 50%,rgba(0,212,255,.07) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 60% at 80% 50%,rgba(124,58,237,.08) 0%,transparent 60%);
+}
+/* neural dots */
+.neural-dot{
+  position:absolute;border-radius:50%;pointer-events:none;
+  animation:pulse-dot 4s infinite ease-in-out;
+}
+@keyframes pulse-dot{0%,100%{opacity:.15;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+
+.hero-wrap{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:center;
+  position:relative;z-index:1;max-width:1100px;width:100%;
+}
+.hero-left{}
+
+/* terminal badge */
+.terminal-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.35rem .9rem;border-radius:6px;
+  border:1px solid rgba(0,212,255,.25);
+  background:rgba(0,212,255,.06);
+  font-family:'JetBrains Mono',monospace;
+  font-size:.75rem;color:var(--cyan);margin-bottom:1.4rem;
+}
+.t-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);animation:blink 1.2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+.hero-name{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(2.4rem,5vw,3.8rem);
+  font-weight:700;line-height:1.08;margin-bottom:.6rem;
+  letter-spacing:-1px;
+}
+.hero-name span{
+  background:linear-gradient(90deg,var(--cyan),var(--violet));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-Field{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.9rem;color:var(--cyan);margin-bottom:.5rem;
+}
+/* ✏️ Location — apna Location yahan edit karo */
+.hero-Location{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.85rem;color:var(--muted);margin-bottom:1.2rem;
+}
+.hero-Location svg{width:14px;height:14px;fill:var(--violet)}
+.hero-bio{color:var(--muted);font-size:.95rem;max-width:480px;margin-bottom:1.8rem;line-height:1.7}
+
+.hero-btns{display:flex;gap:.9rem;flex-wrap:wrap;margin-bottom:1.8rem}
+.btn-primary{
+  padding:.75rem 1.8rem;border-radius:8px;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));
+  color:#fff;font-weight:600;font-size:.88rem;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:opacity .2s,transform .2s;font-family:inherit;
+}
+.btn-primary:hover{opacity:.88;transform:translateY(-1px)}
+.btn-secondary{
+  padding:.75rem 1.8rem;border-radius:8px;
+  border:1px solid var(--border);background:transparent;
+  color:var(--white);font-weight:500;font-size:.88rem;
+  text-decoration:none;cursor:pointer;
+  transition:border-color .2s,background .2s;font-family:inherit;
+}
+.btn-secondary:hover{border-color:var(--cyan);background:var(--cyan-dim)}
+
+.stat-row{display:flex;gap:1.8rem;flex-wrap:wrap}
+.stat-item{}
+.stat-num{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.6rem;font-weight:700;color:var(--cyan);
+}
+.stat-lbl{font-size:.75rem;color:var(--muted)}
+
+/* hero right — photo + card */
+.hero-right{display:flex;flex-direction:column;align-items:center;gap:1.2rem}
+.photo-wrap{
+  width:200px;height:200px;border-radius:50%;
+  border:2px solid transparent;
+  background:linear-gradient(var(--card),var(--card)) padding-box,
+             linear-gradient(135deg,var(--cyan),var(--violet)) border-box;
+  box-shadow:0 0 40px rgba(0,212,255,.2);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;
+}
+.photo-wrap img{width:100%;height:100%;object-fit:cover;display:none}
+.photo-ph{font-size:5rem}
+.info-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:1.2rem 1.5rem;width:100%;max-width:260px;
+}
+.info-row{display:flex;justify-content:space-between;align-items:center;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.info-row:last-child{border-bottom:none}
+.info-key{font-size:.76rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.info-val{font-size:.82rem;font-weight:600;color:var(--white)}
+
+/* ─── SECTIONS ─── */
+section{padding:90px 6%}
+.alt{background:var(--bg2)}
+.sec-eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;color:var(--cyan);letter-spacing:3px;
+  text-transform:uppercase;margin-bottom:.5rem;
+}
+.sec-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;
+  margin-bottom:.7rem;letter-spacing:-.5px;
+}
+.sec-line{
+  width:40px;height:2px;
+  background:linear-gradient(90deg,var(--cyan),var(--violet));
+  border-radius:2px;margin-bottom:3rem;
+}
+
+/* ─── SKILLS ─── */
+.skill-section{margin-bottom:3rem}
+.skill-section-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:1.3rem;flex-wrap:wrap;gap:.8rem;
+}
+.skill-section-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1rem;font-weight:600;
+  display:flex;align-items:center;gap:.6rem;
+}
+.skill-section-title .s-icon{
+  width:30px;height:30px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.95rem;
+}
+.s-cyan{background:var(--cyan-dim);border:1px solid rgba(0,212,255,.2)}
+.s-violet{background:var(--violet-dim);border:1px solid rgba(124,58,237,.2)}
+.s-mix{background:linear-gradient(135deg,var(--cyan-dim),var(--violet-dim));border:1px solid var(--border)}
+
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:1rem;
+}
+.skill-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:1.3rem 1.4rem;
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+  position:relative;
+}
+.skill-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 28px rgba(0,212,255,.1);
+  border-color:rgba(0,212,255,.3);
+}
+.sk-top{display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem}
+.sk-emoji{font-size:1.4rem}
+.sk-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.93rem}
+.sk-desc{font-size:.82rem;color:var(--muted);line-height:1.55}
+.del-x{
+  position:absolute;top:8px;right:10px;
+  background:none;border:none;color:var(--muted);
+  font-size:.8rem;cursor:pointer;opacity:0;transition:opacity .2s,color .2s;
+  padding:2px 6px;border-radius:4px;
+}
+.skill-card:hover .del-x{opacity:1}
+.del-x:hover{color:#f87171;background:rgba(248,113,113,.1)}
+
+.add-skill-btn{
+  width:100%;display:flex;align-items:center;justify-content:center;
+  gap:.5rem;padding:1.3rem;border-radius:14px;
+  border:1.5px dashed rgba(124,58,237,.3);background:none;
+  color:var(--violet);font-size:.88rem;font-weight:600;
+  cursor:pointer;transition:all .2s;font-family:inherit;
+}
+.add-skill-btn:hover{border-color:var(--violet);background:var(--violet-dim)}
+
+/* ─── PROJECTS ─── */
+.proj-grid{display:flex;flex-direction:column;gap:1.5rem}
+.proj-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:18px;padding:2rem;
+  transition:border-color .2s,box-shadow .2s;
+}
+.proj-card:hover{border-color:rgba(0,212,255,.25);box-shadow:0 8px 30px rgba(0,212,255,.07)}
+.proj-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:.8rem}
+.proj-name{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:700}
+.proj-badge{
+  font-size:.7rem;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;padding:.2rem .7rem;border-radius:50px;
+}
+.live{background:rgba(52,211,153,.12);color:#34D399;border:1px solid rgba(52,211,153,.25)}
+.wip{background:rgba(251,191,36,.1);color:#FBBF24;border:1px solid rgba(251,191,36,.2)}
+.proj-desc{color:var(--muted);font-size:.9rem;margin-bottom:1.1rem;line-height:1.65}
+.tag-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.3rem}
+.tag{
+  padding:.18rem .65rem;border-radius:6px;
+  font-size:.73rem;font-weight:500;
+  background:var(--cyan-dim);color:var(--cyan);
+  border:1px solid rgba(0,212,255,.15);
+  font-family:'JetBrains Mono',monospace;
+}
+.proj-links{display:flex;gap:.7rem;flex-wrap:wrap}
+.link-btn{
+  padding:.5rem 1.1rem;border-radius:8px;
+  font-size:.82rem;font-weight:600;text-decoration:none;
+  transition:all .2s;cursor:pointer;border:none;font-family:inherit;
+}
+.link-demo{background:linear-gradient(135deg,var(--cyan),var(--violet));color:#fff}
+.link-demo:hover{opacity:.85}
+.link-gh{border:1px solid var(--border);background:none;color:var(--muted)}
+.link-gh:hover{border-color:var(--white);color:var(--white)}
+
+/* ─── TOOLS ─── */
+.tools-wrap{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
+  gap:.9rem;
+}
+.tool-chip{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:.9rem .6rem;
+  text-align:center;transition:all .2s;cursor:default;
+}
+.tool-chip:hover{border-color:var(--cyan);box-shadow:0 4px 16px rgba(0,212,255,.12);transform:translateY(-2px)}
+.t-icon{font-size:1.3rem;margin-bottom:.35rem}
+.t-name{font-size:.74rem;font-weight:600;color:var(--muted)}
+
+/* ─── CONTACT ─── */
+.contact-wrap{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:1.1rem;max-width:800px;
+}
+.contact-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:1.4rem;text-align:center;
+  transition:all .2s;
+}
+.contact-card:hover{border-color:rgba(0,212,255,.3);box-shadow:0 6px 20px rgba(0,212,255,.1)}
+.cc-icon{font-size:1.7rem;margin-bottom:.6rem}
+.cc-label{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.88rem;margin-bottom:.3rem}
+.cc-val{font-size:.82rem;color:var(--cyan);text-decoration:none;word-break:break-all}
+.cc-val:hover{text-decoration:underline}
+
+/* ─── FOOTER ─── */
+footer{
+  padding:1.5rem 6%;text-align:center;
+  border-top:1px solid var(--border);
+  color:var(--muted);font-size:.82rem;
+}
+.f-row{display:flex;gap:1.2rem;justify-content:center;margin-bottom:.6rem;flex-wrap:wrap}
+.f-row a{color:var(--muted);text-decoration:none;font-weight:500;transition:color .2s}
+.f-row a:hover{color:var(--cyan)}
+
+/* ─── MODAL ─── */
+.overlay{
+  display:none;position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;
+}
+.overlay.show{display:flex}
+.modal{
+  background:var(--bg3);border:1px solid var(--border2);
+  border-radius:20px;padding:2rem;width:90%;max-width:420px;
+}
+.modal-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.1rem;font-weight:700;margin-bottom:1.3rem;
+}
+.modal label{font-size:.78rem;color:var(--muted);display:block;margin-bottom:.3rem}
+.modal input,.modal textarea,.modal select{
+  width:100%;background:var(--bg);
+  border:1px solid var(--border);border-radius:8px;
+  padding:.65rem .9rem;color:var(--white);
+  font-family:inherit;font-size:.88rem;
+  margin-bottom:.9rem;outline:none;
+}
+.modal input:focus,.modal textarea:focus{border-color:var(--cyan)}
+.modal textarea{resize:vertical;min-height:70px}
+.modal-footer{display:flex;gap:.7rem;justify-content:flex-end;margin-top:.3rem}
+.m-cancel{
+  padding:.55rem 1.3rem;border-radius:8px;
+  border:1px solid var(--border);background:none;
+  color:var(--muted);cursor:pointer;font-size:.85rem;font-family:inherit;
+}
+.m-save{
+  padding:.55rem 1.3rem;border-radius:8px;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));
+  color:#fff;border:none;cursor:pointer;
+  font-size:.85rem;font-weight:600;font-family:inherit;
+}
+
+/* ─── MOBILE ─── */
+@media(max-width:900px){
+  .hero-wrap{grid-template-columns:1fr;text-align:center}
+  .hero-bio{margin:0 auto 1.8rem}
+  .hero-btns{justify-content:center}
+  .stat-row{justify-content:center}
+  .hero-right{display:none}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .ham{display:flex}
+  .nav-links.open{
+    display:flex;flex-direction:column;
+    position:absolute;top:60px;left:0;right:0;
+    background:rgba(6,11,24,.97);
+    padding:1rem 6%;gap:1rem;
+    border-bottom:1px solid var(--border);
+  }
+  section{padding:70px 5%}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ NAV -->
+<nav>
+  <!-- ✏️ EDIT: Logo text -->
+  <div class="logo">YourName.ai</div>
+  <ul class="nav-links" id="navMenu">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="ham" id="ham" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+
+<!-- ═══════════════════════════════════════ HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div id="dots"></div>
+
+  <div class="hero-wrap">
+    <div class="hero-left">
+
+      <div class="terminal-badge">
+        <span class="t-dot"></span>
+        <!-- ✏️ EDIT: Badge text -->
+        <span>Available for projects</span>
+      </div>
+
+      <!-- ✏️ EDIT: Apna naam — "Ali Hassan Bhatti" ki jagah -->
+      <h1 class="hero-name">
+        Hi, I'm<br/>
+        <span>Ali Hassan Bhatti</span>
+      </h1>
+
+      <!-- ✏️ EDIT: Apni Information Technology -->
+      <p class="hero-Information Technology">// Information Technology</p>
+
+      <!-- ✏️ EDIT: Apna Location -->
+      <p class="hero-Location">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Multan, Pakistan
+      </p>
+
+      <!-- ✏️ EDIT: Apne baare mein 2-3 lines -->
+      <p class="hero-bio">
+        I build intelligent AI agents and automation systems that solve real business problems.
+        From multi-agent workflows to LLM-powered tools — turning complex ideas into working AI solutions.
+      </p>
+
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-secondary">Hire Me</a>
+      </div>
+
+      <!-- ✏️ EDIT: Apne stats — numbers update karo -->
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-num">5+</div>
+          <div class="stat-lbl">Projects Built</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2+</div>
+          <div class="stat-lbl">Happy Clients</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">AI</div>
+          <div class="stat-lbl">Focused</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="hero-right">
+      <!-- ✏️ PHOTO: src="" mein apni photo ka path daalo
+           Same folder mein photo rakho: src="photo.jpeg"
+           Ya online link: src="https://..." -->
+      <div class="photo-wrap">
+        <img id="heroImg" src="" alt="Profile"/>
+        <span class="photo-ph" id="heroPh">🤖</span>
+      </div>
+
+      <!-- ✏️ EDIT: Info card details -->
+      <div class="info-card">
+        <div class="info-row">
+          <span class="info-key">Degree</span>
+          <!-- ✏️ Apni Degree -->
+          <span class="info-val">BS IT</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Field</span>
+          <span class="info-val">Information Technology</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Location</span>
+          <!-- ✏️ Apna shehar -->
+          <span class="info-val">Multan, PK</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Status</span>
+          <span class="info-val" style="color:#34D399">● Open to Work</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ SKILLS -->
+<section id="skills" class="alt">
+  <p class="sec-eyebrow">// Expertise</p>
+  <h2 class="sec-title">My Skills</h2>
+  <div class="sec-line"></div>
+
+  <!-- ══════════ SKILL SECTION 1 ══════════ -->
+  <!-- ✏️ EDIT: Section 1 ka naam aur icon -->
+  <div class="skill-section">
+    <div class="skill-section-header">
+      <div class="skill-section-title">
+        <div class="s-icon s-cyan">🤖</div>
+        AI & Agents
+      </div>
+      <button class="add-skill-btn" style="width:auto;padding:.4rem 1rem;font-size:.8rem" onclick="openModal(1)">+ Add Skill</button>
+    </div>
+    <div class="skills-grid" id="grid1">
+
+      <!-- ✏️ Skill cards — emoji, naam, description edit karo -->
+      <div class="skill-card">
+        <button class="del-x" onclick="delCard(this)">✕</button>
+        <div class="sk-top"><span class="sk-emoji">🧠</span><span class="sk-name">AI Agent Development</span></div>
+        <p class="sk-desc">Building autonomous agents that reason, plan and execute tasks using LangChain & CrewAI.</p>
+      </div>
+      <div class="skill-card">
+        <button class="del-x" onclick="delCard(this)">✕</button>
+        <div class="sk-top"><span class="sk-emoji">🔗</span><span class="sk-name">Multi-Agent Systems</span></div>
+        <p class="sk-desc">Designing pipelines where multiple specialized agents collaborate on complex workflows.</p>
+      </div>
+      <div class="skill-card">
+        <button class="del-x" onclick="delCard(this)">✕</button>
+        <div class="sk-top"><span class="sk-emoji">💬</span><span class="sk-name">LLM Integration</span></div>
+        <p class="sk-desc">Connecting OpenAI, Anthropic & open-source models into production-ready applications.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════ SKILL SECTION 2 ══════════ -->
+  <!-- ✏️ EDIT: Section 2 ka naam aur icon -->
+  <div class="skill-section">
+    <div class="skill-section-header">
+      <div class="skill-section-title">
+        <div class="s-icon s-violet">⚡</div>
+        Automation & Dev
+      </div>
+      <button class="add-skill-btn" style="width:auto;padding:.4rem 1rem;font-size:.8rem" onclick="openModal(2)">+ Add Skill</button>
+    </div>
+    <div class="skills-grid" id="grid2">
+
+      <div class="skill-card">
+        <button class="del-x" onclick="delCard(this)">✕</button>
+        <div class="sk-top"><span class="sk-emoji">🐍</span><span class="sk-name">Python Development</span></div>
+        <p class="sk-desc">Writing clean backend code, REST APIs with FastAPI, and data processing pipelines.</p>
+      </div>
+      <div class="skill-card">
+        <button class="del-x" onclick="delCard(this)">✕</button>
+        <div class="sk-top"><span class="sk-emoji">🔄</span><span class="sk-name">Workflow Automation</span></div>
+        <p class="sk-desc">Automating business processes by connecting AI agents to APIs, databases and external tools.</p>
+      </div>
+      <div class="skill-card">
+        <button class="del-x" onclick="delCard(this)">✕</button>
+        <div class="sk-top"><span class="sk-emoji">🗃️</span><span class="sk-name">RAG Systems</span></div>
+        <p class="sk-desc">Building retrieval-augmented generation systems with vector databases like Pinecone & ChromaDB.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════ SKILL SECTION 3 ══════════ -->
+  <!-- ✏️ EDIT: Section 3 ka naam aur icon -->
+  <div class="skill-section">
+    <div class="skill-section-header">
+      <div class="skill-section-title">
+        <div class="s-icon s-mix">🎯</div>
+        Tools & Platforms
+      </div>
+      <button class="add-skill-btn" style="width:auto;padding:.4rem 1rem;font-size:.8rem" onclick="openModal(3)">+ Add Skill</button>
+    </div>
+    <div class="skills-grid" id="grid3">
+
+      <div class="skill-card">
+        <button class="del-x" onclick="delCard(this)">✕</button>
+        <div class="sk-top"><span class="sk-emoji">✍️</span><span class="sk-name">Prompt Engineering</span></div>
+        <p class="sk-desc">Crafting optimized prompts and system instructions for reliable, structured LLM outputs.</p>
+      </div>
+      <div class="skill-card">
+        <button class="del-x" onclick="delCard(this)">✕</button>
+        <div class="sk-top"><span class="sk-emoji">📊</span><span class="sk-name">Data Pipelines</span></div>
+        <p class="sk-desc">Building end-to-end data pipelines that feed and power intelligent AI systems.</p>
+      </div>
+      <div class="skill-card">
+        <button class="del-x" onclick="delCard(this)">✕</button>
+        <div class="sk-top"><span class="sk-emoji">☁️</span><span class="sk-name">API Integration</span></div>
+        <p class="sk-desc">Connecting third-party APIs, webhooks and services into automated agent workflows.</p>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════ PROJECTS -->
+<section id="projects">
+  <p class="sec-eyebrow">// My Work</p>
+  <h2 class="sec-title">Projects</h2>
+  <div class="sec-line"></div>
+
+  <div class="proj-grid">
+
+    <!-- ══════════════════════════════════════
+      ✏️ PROJECT 1 — Apna project yahan edit karo
+    ══════════════════════════════════════ -->
+    <div class="proj-card">
+      <div class="proj-top">
+        <!-- ✏️ Project ka naam -->
+        <div class="proj-name">AI Chatbot with Memory</div>
+        <!-- ✏️ "live" ya "wip" class use karo -->
+        <span class="proj-badge live">Live</span>
+      </div>
+      <!-- ✏️ Project ki description -->
+      <p class="proj-desc">
+        Is project mein kya banaya? Kaise kaam karta hai? Kya problem solve karta hai?
+        2-3 lines mein clearly likho yahan.
+      </p>
+      <!-- ✏️ Technologies jo use ki -->
+      <div class="tag-row">
+        <span class="tag">LangChain</span>
+        <span class="tag">Python</span>
+        <span class="tag">OpenAI</span>
+        <span class="tag">FastAPI</span>
+        <!-- ✏️ Aur tags add karo: <span class="tag">PostgreSQL</span> -->
+      </div>
+      <div class="proj-links">
+        <!-- ✏️ Live demo link — nahi hai toh ye line hata do -->
+        <a href="https://APNA-PROJECT.com" class="link-btn link-demo" target="_blank">🔗 Live Demo</a>
+        <!-- ✏️ GitHub link — private hai toh hata do -->
+        <a href="https://github.com/alihassan-Developer/REPO" class="link-btn link-gh" target="_blank">⌥ GitHub</a>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+      ✏️ PROJECT 2
+    ══════════════════════════════════════ -->
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-name">	Automatic Email Summarizer</div>
+        <span class="proj-badge wip">In Progress</span>
+      </div>
+      <p class="proj-desc">
+        Doosre project ke baare mein yahan likho. Kya banaya, kaise kaam karta hai,
+        kya result mila.
+      </p>
+      <div class="tag-row">
+        <span class="tag">CrewAI</span>
+        <span class="tag">Python</span>
+        <span class="tag">Gemini</span>
+        <!-- ✏️ Apni technologies -->
+      </div>
+      <div class="proj-links">
+        <a href="https://APNA-PROJECT.com" class="link-btn link-demo" target="_blank">🔗 Live Demo</a>
+        <a href="https://github.com/alihassan-Developer/REPO" class="link-btn link-gh" target="_blank">⌥ GitHub</a>
+      </div>
+    </div>
+
+    <!--
+    ══════════════════════════════════════
+    ✏️ TEEN'WA PROJECT ADD KARNA HO TOH:
+    Ye block copy-paste karo aur edit karo:
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-name">PROJECT NAAM</div>
+        <span class="proj-badge live">Live</span>
+      </div>
+      <p class="proj-desc">Description yahan.</p>
+      <div class="tag-row">
+        <span class="tag">Technology</span>
+      </div>
+      <div class="proj-links">
+        <a href="#" class="link-btn link-demo" target="_blank">🔗 Live Demo</a>
+        <a href="#" class="link-btn link-gh" target="_blank">⌥ GitHub</a>
+      </div>
+    </div>
+    ══════════════════════════════════════ -->
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ TOOLS -->
+<section id="tools" class="alt">
+  <p class="sec-eyebrow">// Tech Stack</p>
+  <h2 class="sec-title">Tools I Use</h2>
+  <div class="sec-line"></div>
+
+  <!-- ✏️ EDIT: Apne tools — icon aur naam badlo. Copy-paste karo zyada add karne ke liye -->
+  <div class="tools-wrap">
+    <div class="tool-chip"><div class="t-icon">🦜</div><div class="t-name">LangChain</div></div>
+    <div class="tool-chip"><div class="t-icon">👥</div><div class="t-name">CrewAI</div></div>
+    <div class="tool-chip"><div class="t-icon">🤖</div><div class="t-name">AutoGen</div></div>
+    <div class="tool-chip"><div class="t-icon">⚡</div><div class="t-name">OpenAI API</div></div>
+    <div class="tool-chip"><div class="t-icon">🌊</div><div class="t-name">LangFlow</div></div>
+    <div class="tool-chip"><div class="t-icon">🐍</div><div class="t-name">Python</div></div>
+    <div class="tool-chip"><div class="t-icon">🚀</div><div class="t-name">FastAPI</div></div>
+    <div class="tool-chip"><div class="t-icon">🗄️</div><div class="t-name">Pinecone</div></div>
+    <div class="tool-chip"><div class="t-icon">📊</div><div class="t-name">Streamlit</div></div>
+    <div class="tool-chip"><div class="t-icon">🐳</div><div class="t-name">Docker</div></div>
+    <div class="tool-chip"><div class="t-icon">🔧</div><div class="t-name">n8n</div></div>
+    <div class="tool-chip"><div class="t-icon">💾</div><div class="t-name">ChromaDB</div></div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ CONTACT -->
+<section id="contact">
+  <p class="sec-eyebrow">// Let's Connect</p>
+  <h2 class="sec-title">Get In Touch</h2>
+  <div class="sec-line"></div>
+
+  <div class="contact-wrap">
+
+    <!-- ✏️ WHATSAPP -->
+    <div class="contact-card">
+      <div class="cc-icon">📱</div>
+      <div class="cc-label">WhatsApp</div>
+      <!-- ✏️ Apna number daalo — 92 ke baad spaces mat rakho -->
+      <a href="https://wa.me/+93496348446" class="cc-val" target="_blank">+923496348446</a>
+    </div>
+
+    <!-- ✏️ EMAIL -->
+    <div class="contact-card">
+      <div class="cc-icon">📧</div>
+      <div class="cc-label">Email</div>
+      <!-- ✏️ Apna email -->
+      <a href="mailto:alihassanbh11@gmail.com" class="cc-val">alihassanbh11@gmail.com</a>
+    </div>
+
+    <!-- ✏️ GITHUB -->
+    <div class="contact-card">
+      <div class="cc-icon">💻</div>
+      <div class="cc-label">GitHub</div>
+      <!-- ✏️ Apna GitHub alihassan-Developer -->
+      <a href="https://github.com/APNA-alihassan-Developer" class="cc-val" target="_blank">github.com/alihassan-Developer</a>
+    </div>
+
+    <!-- ✏️ LINKEDIN -->
+    <div class="contact-card">
+      <div class="cc-icon">💼</div>
+      <div class="cc-label">LinkedIn</div>
+      <a href="https://linkedin.com/in/APNA-alihassan-Developer" class="cc-val" target="_blank">www.linkedin.com/in/ali-hassan-bhatti-3a34751a6</a>
+    </div>
+
+    <!-- ✏️ Location -->
+    <div class="contact-card">
+      <div class="cc-icon">🌍</div>
+      <div class="cc-label">Location</div>
+      <!-- ✏️ Apna shehar -->
+      <span class="cc-val">Multan, Pakistan</span>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ FOOTER -->
+<footer>
+  <div class="f-row">
+    <a href="https://github.com/APNA-alihassan-Developer" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/APNA-alihassan-Developer" target="_blank">LinkedIn</a>
+    <a href="https://twitter.com/APNA-alihassan-Developer" target="_blank">Twitter</a>
+  </div>
+  <!-- ✏️ Apna naam -->
+  <p>© 2025 Ali Hassan Bhatti · Built with ❤️ &amp; AI</p>
+</footer>
+
+
+<!-- ═══════════════════════════════════════ ADD SKILL MODAL -->
+<div class="overlay" id="modal">
+  <div class="modal">
+    <div class="modal-title">✦ Add New Skill</div>
+    <input type="hidden" id="targetGrid"/>
+    <label>Icon (emoji)</label>
+    <input type="text" id="mIcon" placeholder="🤖" maxlength="4"/>
+    <label>Skill Name</label>
+    <input type="text" id="mName" placeholder="e.g. RAG Systems"/>
+    <label>Short Description</label>
+    <textarea id="mDesc" placeholder="Is skill ke baare mein 1-2 line..."></textarea>
+    <div class="modal-footer">
+      <button class="m-cancel" onclick="closeModal()">Cancel</button>
+      <button class="m-save" onclick="saveSkill()">Add Skill</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ JS -->
+<script>
+// Hamburger
+document.getElementById('ham').addEventListener('click',function(){
+  document.getElementById('navMenu').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(function(a){
+  a.addEventListener('click',function(){document.getElementById('navMenu').classList.remove('open');});
+});
+
+// Active nav
+var secs=document.querySelectorAll('section[id]');
+window.addEventListener('scroll',function(){
+  var cur='';
+  secs.forEach(function(s){if(window.scrollY>=s.offsetTop-90)cur=s.id;});
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    a.style.color=a.getAttribute('href')==='#'+cur?'var(--cyan)':'';
+  });
+});
+
+// Neural dots
+var dc=document.getElementById('dots');
+var colors=['rgba(0,212,255,.3)','rgba(124,58,237,.3)'];
+for(var i=0;i<16;i++){
+  var d=document.createElement('div');
+  d.className='neural-dot';
+  var sz=Math.random()*4+2;
+  d.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+(Math.random()*100)+'%;top:'+(20+Math.random()*60)+'%;background:'+colors[i%2]+';animation-delay:'+(Math.random()*4)+'s;animation-duration:'+(3+Math.random()*3)+'s;';
+  dc.appendChild(d);
+}
+
+// Photo
+var img=document.getElementById('heroImg');
+if(img&&img.src&&img.src!==window.Location.href){
+  img.style.display='block';
+  document.getElementById('heroPh').style.display='none';
+}
+
+// Modal
+var activeGrid=1;
+function openModal(n){activeGrid=n;document.getElementById('modal').classList.add('show');}
+function closeModal(){
+  document.getElementById('modal').classList.remove('show');
+  document.getElementById('mIcon').value='';
+  document.getElementById('mName').value='';
+  document.getElementById('mDesc').value='';
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+function saveSkill(){
+  var icon=document.getElementById('mIcon').value.trim()||'⭐';
+  var name=document.getElementById('mName').value.trim();
+  var desc=document.getElementById('mDesc').value.trim();
+  if(!name){alert('Skill ka naam daalo!');return;}
+  var card=document.createElement('div');
+  card.className='skill-card';
+  card.innerHTML='<button class="del-x" onclick="delCard(this)">✕</button><div class="sk-top"><span class="sk-emoji">'+icon+'</span><span class="sk-name">'+name+'</span></div><p class="sk-desc">'+desc+'</p>';
+  document.getElementById('grid'+activeGrid).appendChild(card);
+  closeModal();
+}
+
+function delCard(btn){
+  if(confirm('Remove this skill?'))btn.closest('.skill-card').remove();
+}
+</script>
+</body>
+</html>
